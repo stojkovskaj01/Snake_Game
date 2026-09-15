@@ -1,0 +1,449 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background 0.4s ease, color 0.4s ease;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+    color: #ffffff;
+    padding: 20px;
+    overflow-y: auto; /* Овозможува природно скролување на целата страница кога има потреба */
+}
+
+h1{
+    margin-bottom: 20px;
+    font-size: 38px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #00f2fe, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+    text-align: center;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0 6px 0;
+    color: #00f2fe;
+}
+
+/* MAIN MENU TWO-COLUMN LAYOUT */
+#menu{
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    width: 100%;
+}
+
+.menu-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.menu-settings{
+    display: flex;
+    flex-direction: column;
+}
+
+select{
+    width: 100%;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+select:hover{
+    border-color: #00f2fe;
+}
+
+select option {
+    background: #1a1a2e;
+    color: white;
+    padding: 8px;
+}
+
+button{
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.menu-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-primary{
+    width: 100%;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0f0f1a;
+    border: none;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+button:hover{
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0f0f1a;
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+/* LEGENDS RIGHT PANEL */
+.menu-legends{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.legend-card{
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.unlock-grid, .levels{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.legend-card p{
+    background: rgba(255, 255, 255, 0.03);
+    margin: 0;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Custom Scrollbar za Detailed Level Guide */
+.levels::-webkit-scrollbar,
+#statsText::-webkit-scrollbar,
+#achievementText::-webkit-scrollbar,
+#menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.levels::-webkit-scrollbar-track,
+#statsText::-webkit-scrollbar-track,
+#achievementText::-webkit-scrollbar-track,
+#menu::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.levels::-webkit-scrollbar-thumb,
+#statsText::-webkit-scrollbar-thumb,
+#achievementText::-webkit-scrollbar-thumb,
+#menu::-webkit-scrollbar-thumb {
+    background: #00f2fe;
+    border-radius: 10px;
+}
+
+.levels {
+    scrollbar-width: thin;
+    scrollbar-color: #00f2fe rgba(0, 0, 0, 0.2);
+}
+
+/* GAME UI & SCREENS */
+#gameUI, #gameOverScreen{
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 100%;
+}
+
+canvas{
+    border: 4px solid #00f2fe;
+    background: #111118;
+    border-radius: 14px;
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+    display: block;
+    margin: 0 auto;
+}
+
+.stats{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.game-buttons{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.hint{
+    font-size: 13px;
+    color: #888;
+    margin-top: 10px;
+}
+
+#countdown{
+    height: 40px;
+    font-size: 35px;
+    font-weight: 800;
+    color: #00f2fe;
+}
+
+/* MODAL WINDOWS (Stats, Achievements, Pause) */
+#statsScreen,
+#achievementScreen,
+#pauseMenu {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid #00f2fe;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0, 242, 254, 0.3);
+    z-index: 1000;
+    animation: modalPopup 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#statsScreen h2,
+#achievementScreen h2,
+#pauseMenu h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.pause-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pause-buttons button {
+    width: 100%;
+    margin: 0;
+}
+
+#resumeBtn {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0f0f1a;
+    font-weight: 800;
+    border: none;
+}
+
+#statsText,
+#achievementText{
+    text-align: left;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#statsText div,
+#achievementText div {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+#statsText div:last-child,
+#achievementText div:last-child {
+    border-bottom: none;
+}
+
+#closeStats,
+#closeAch{
+    width: 100%;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0f0f1a;
+    font-weight: 800;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#closeStats:hover,
+#closeAch:hover{
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+    transform: none;
+}
+
+@keyframes modalPopup {
+    0% { opacity: 0; transform: translate(-50%, -45%) scale(0.9); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* THEMES */
+.dark{ background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%); }
+.neon{ background: radial-gradient(circle at center, #120024 0%, #05000d 100%); }
+.neon canvas{ border-color: #ff007f; box-shadow: 0 0 35px rgba(255, 0, 127, 0.5); }
+.retro{ background: radial-gradient(circle at center, #3d311b 0%, #1f180d 100%); color: #ffe8a3; }
+.retro canvas{ background: #8bac0f; border-color: #402000; }
+
+/* MOBILE CONTROLS (D-PAD) */
+#mobileControls{
+    display: none;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.dpad{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dpad-row{
+    display: flex;
+    gap: 60px;
+}
+
+#mobileControls button{
+    width: 65px;
+    height: 65px;
+    font-size: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+
+#mobileControls button:active {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #0f0f1a;
+    transform: scale(0.92);
+}
+
+/* RESPONSIVE DESIGN FOR PHONES (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        overflow-y: auto !important;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    #menu {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .menu-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Дозволува скролување на легендите на телефон за да не заземаат премногу простор */
+    .menu-legends {
+        display: flex;
+    }
+
+    .legend-card {
+        max-height: 180px;
+        overflow-y: auto;
+    }
+
+    h2 {
+        font-size: 14px;
+        margin: 6px 0 4px 0;
+    }
+
+    select, button {
+        padding: 10px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+
+    canvas {
+        width: 280px !important;
+        height: 280px !important;
+        border-width: 3px;
+        border-radius: 10px;
+    }
+
+    #gameUI, #gameOverScreen, #pauseMenu {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .stats {
+        font-size: 13px;
+        padding: 6px 10px;
+        gap: 8px;
+    }
+}

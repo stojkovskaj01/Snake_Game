@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Odyssey</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="snake.png">
+    <script src="script.js" defer></script>
+</head>
+<body class="dark">
+
+<h1>Snake Odyssey</h1>
+
+<!-- MAIN MENU -->
+<div id="menu">
+    <div class="menu-container">
+        <!-- Left Column: Settings & Actions -->
+        <div class="menu-settings">
+            <h2>Select Mode</h2>
+            <select id="level">
+                <option value="easy">Easy (Slow & Relaxed)</option>
+                <option value="normal" selected>Normal (Classic Rules)</option>
+                <option value="hard">Hard (Bombs & Speed)</option>
+                <option value="portal">Portal Mode (Teleporting)</option>
+                <option value="maze">Maze Mode (Fixed Walls)</option>
+                <option value="poison">Poison / Mystery (Random Fruits)</option>
+                <option value="ice">Ice Slider (Slippery Terrain)</option>
+                <option value="growingWalls">Growing Walls (Expanding Obstacles)</option>
+                <option value="survival">Survival (AI Snake & Bombs)</option>
+                <option value="time">Time Attack (60 Seconds)</option>
+            </select>
+
+            <h2>Theme</h2>
+            <select id="theme">
+                <option value="dark">Dark</option>
+                <option value="neon">Neon</option>
+                <option value="retro">Retro</option>
+            </select>
+
+            <h2>Snake Skin</h2>
+            <select id="skin">
+                <option value="classic">Classic</option>
+                <option value="neon">Neon</option>
+                <option value="fire">Fire</option>
+                <option value="gold">Golden</option>
+                <option value="ghost">Ghost</option>
+            </select>
+
+            <div class="menu-buttons">
+                <button id="statsBtn">Statistics</button>
+                <button id="achBtn">Achievements</button>
+            </div>
+
+            <button id="start" class="btn-primary">Start Game</button>
+        </div>
+
+        <!-- Right Column: Legends & Info -->
+        <div class="menu-legends">
+            <div id="skinLegend" class="legend-card">
+                <h2>Skin Unlocks</h2>
+                <div class="unlock-grid">
+                    <p><b>Classic</b><br>Default</p>
+                    <p><b>Neon</b><br>Score 100</p>
+                    <p><b>Fire</b><br>Hard Mode</p>
+                    <p><b>Golden</b><br>Score 500</p>
+                    <p><b>Ghost</b><br>Survival</p>
+                </div>
+            </div>
+
+            <div id="legend" class="legend-card">
+                <h2>Detailed Level Guide</h2>
+                <div class="levels" style="grid-template-columns: 1fr; max-height: 250px; overflow-y: auto; gap: 6px;">
+                    <p><b>Easy:</b> Бавно движење, без пречки, идеално за релаксација.</p>
+                    <p><b>Normal:</b> Стандардни класични правила и брзина на играта.</p>
+                    <p><b>Hard:</b> Предизвик со бомби, зголемена брзина и поостри правила.</p>
+                    <p><b>Portal Mode:</b> Влези во еден портал и излези на сосем друго место на мапата!</p>
+                    <p><b>Maze Mode:</b> Постојани, фиксни ѕидови кои бараат прецизно маневрирање.</p>
+                    <p><b>Poison / Mystery:</b> Специјални овошја што носат забавување, забрзување или бонуси.</p>
+                    <p><b>Ice Slider:</b> Лизгав терен каде змијата продолжува да се движи како на мраз.</p>
+                    <p><b>Growing Walls:</b> Секое јадено јаболко додава нов постојан ѕид на полето.</p>
+                    <p><b>Survival:</b> Вклучена е вештачка интелигенција (AI змија) што те брка.</p>
+                    <p><b>Time Attack:</b> Трка со времето – имаш точно 60 секунди за рекорд.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- GAME UI -->
+<div id="gameUI" style="display:none;">
+    <div class="stats">
+        <span>Score: <b id="score">0</b></span>
+        <span>Best: <b id="best">0</b></span>
+        <span>Lives: <b id="lives">3</b></span>
+        <span>Time: <b id="timer">0</b></span>
+    </div>
+
+    <div id="countdown"></div>
+
+    <canvas id="game" width="400" height="400"></canvas>
+
+    <div class="game-buttons">
+        <button id="restart">Restart</button>
+        <button id="pauseBtn">Pause</button>
+    </div>
+    <p class="hint">Press P to Pause</p>
+</div>
+
+<!-- PAUSE MENU (Модерно лебдечко прозорче) -->
+<div id="pauseMenu" style="display:none;">
+    <h2>Game Paused</h2>
+    <div class="pause-buttons">
+        <button id="resumeBtn">Resume</button>
+        <button id="exitPauseBtn">Main Menu</button>
+    </div>
+</div>
+
+<!-- GAME OVER -->
+<div id="gameOverScreen" style="display:none;">
+    <h1>Game Over</h1>
+    <h2>Score: <span id="finalScore">0</span></h2>
+    <div class="menu-buttons">
+        <button id="restartGameBtn">Restart</button>
+        <button id="menuBtn">Main Menu</button>
+    </div>
+</div>
+
+<!-- MOBILE CONTROLS -->
+
+<div id="mobileControls">
+    <div class="dpad">
+        <button id="up">▲</button>
+        <div class="dpad-row">
+            <button id="left">◀</button>
+            <button id="down">▼</button>
+            <button id="right">▶</button>
+        </div>
+    </div>
+</div>
+
+<!-- AUDIO -->
+<!-- <audio id="eatSound"><source src="sounds/eat.mp3"></audio> -->
+<!-- <audio id="bonusSound"><source src="sounds/bonus.mp3"></audio> -->
+<!-- <audio id="bombSound"><source src="sounds/bomb.mp3"></audio> -->
+<!-- <audio id="gameOverSound"><source src="sounds/gameover.mp3"></audio> -->
+
+<!-- STATS SCREEN -->
+<div id="statsScreen" style="display:none;">
+    <h2>Statistics</h2>
+    <p id="statsText"></p>
+    <button id="closeStats">Close</button>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div id="achievementScreen" style="display:none;">
+    <h2>Achievements</h2>
+    <p id="achievementText"></p>
+    <button id="closeAch">Close</button>
+</div>
+
+</body>
+</html>
